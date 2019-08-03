@@ -15,16 +15,16 @@ class SignUp extends Component {
       displayName: '',
       email: '',
       password: '',
-      confirmPasword: ''
+      confirmPassword: ''
     };
   }
 
   handleSubmit = async event => {
     event.preventDefault();
 
-    const { displayName, email, password, confirmPasword } = this.state;
+    const { displayName, email, password, confirmPassword } = this.state;
 
-    if (password != confirmPasword) {
+    if (password != confirmPassword) {
       alert('password dont match');
       return;
     }
@@ -35,13 +35,13 @@ class SignUp extends Component {
         password
       );
 
-      createUserProfileDocument(user, { displayName });
+      await createUserProfileDocument(user, { displayName });
 
       this.setState({
         displayName: '',
         email: '',
         password: '',
-        confirmPasword: ''
+        confirmPassword: ''
       });
     } catch (error) {
       console.error(error);
@@ -83,7 +83,7 @@ class SignUp extends Component {
             name="password"
             value={password}
             onChange={this.handleChange}
-            label="password"
+            label="Password"
             required
           />
           <FormInput
